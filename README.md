@@ -1,3 +1,12 @@
+## Mefino Fork
+
+This fork of [BepInEx.ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager) is for use with [Mefino](https://github.com/Mefino/Mefino), a Mod Manager for Outward.
+
+#### Tag
+`outward mefino mod`
+
+# Original README
+
 ## Plugin / mod configuration manager for BepInEx 5
 An easy way to let user configure how a plugin behaves without the need to make your own GUI. The user can change any of the settings you expose, even keyboard shortcuts.
 
