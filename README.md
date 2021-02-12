@@ -2,6 +2,10 @@
 
 This fork of [BepInEx.ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager) is for use with [Mefino](https://github.com/Mefino/Mefino), a Mod Manager for Outward.
 
+How to use:
+* Install with Mefino.
+* When in-game, press F5 to open the config manager. You can change the keybinding by editing the file `BepInEx\config\io.mefino.configurationmanager.cfg`
+
 #### Tag
 `outward mefino mod`
 

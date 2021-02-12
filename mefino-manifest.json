@@ -2,7 +2,7 @@
   "author": "Mefino",
   "repository": "BepInEx.ConfigurationManager",
   "name": "Configuration Manager",
-  "version": "16.1.0",
+  "version": "16.2.0",
   "description": "A universal in-game configuration manager for BepInEx plugins.",
   "download_filename": "mefino-package",
   "tags": [

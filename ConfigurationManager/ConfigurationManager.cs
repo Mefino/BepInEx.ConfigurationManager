@@ -1,6 +1,8 @@
 ﻿// Made by MarC0 / ManlyMarco
 // Copyright 2018 GNU General Public License v3.0
 
+// Forked by Mefino
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,12 +27,12 @@ namespace ConfigurationManager
         /// <summary>
         /// GUID of this plugin
         /// </summary>
-        public const string GUID = "com.bepis.bepinex.configurationmanager";
+        public const string GUID = "io.mefino.configurationmanager";
 
         /// <summary>
         /// Version constant
         /// </summary>
-        public const string Version = "16.1";
+        public const string Version = "16.2";
 
         internal static new ManualLogSource Logger;
         private static SettingFieldDrawer _fieldDrawer;
@@ -93,7 +95,7 @@ namespace ConfigurationManager
             _showAdvanced = Config.AddSetting("Filtering", "Show advanced", false);
             _showKeybinds = Config.AddSetting("Filtering", "Show keybinds", true);
             _showSettings = Config.AddSetting("Filtering", "Show settings", true);
-            _keybind = Config.AddSetting("General", "Show config manager", new BepInEx.Configuration.KeyboardShortcut(KeyCode.F1),
+            _keybind = Config.AddSetting("General", "Show config manager", new BepInEx.Configuration.KeyboardShortcut(KeyCode.F5),
                 new ConfigDescription("The shortcut used to toggle the config manager window on and off.\n" +
                                       "The key can be overridden by a game-specific plugin if necessary, in that case this setting is ignored."));
             _hideSingleSection = Config.AddSetting("General", "Hide single sections", false, new ConfigDescription("Show section title for plugins with only one section"));
