@@ -32,7 +32,7 @@ namespace ConfigurationManager
         /// <summary>
         /// Version constant
         /// </summary>
-        public const string Version = "16.2";
+        public const string Version = "16.3";
 
         internal static new ManualLogSource Logger;
         private static SettingFieldDrawer _fieldDrawer;
@@ -112,6 +112,11 @@ namespace ConfigurationManager
             {
                 if (_displayingWindow == value) return;
                 _displayingWindow = value;
+
+                if (value)
+                    SideLoader.Helpers.ForceUnlockCursor.AddUnlockSource();
+                else
+                    SideLoader.Helpers.ForceUnlockCursor.RemoveUnlockSource();
 
                 SettingFieldDrawer.ClearCache();
 
