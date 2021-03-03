@@ -1,26 +1,26 @@
 ## Outward version
 
-This version of [BepInEx.ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager) is for use with Outward.
+This version of [BepInEx.ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager) is for use with Outward. It was forked from version `16.1`.
 
 How to use:
 * When in-game, press F5 to open the config manager. You can change the keybinding by editing the file `BepInEx\config\io.mefino.configurationmanager.cfg`
 
-# Original README
-
-## Plugin / mod configuration manager for BepInEx 5
-An easy way to let user configure how a plugin behaves without the need to make your own GUI. The user can change any of the settings you expose, even keyboard shortcuts.
-
-The configuration manager can be accessed in-game by pressing the hotkey (by default F1). Hover over the setting names to see their descriptions, if any.
-
-![Configuration manager](Screenshot.PNG)
-
-## How to use
-- Install a build of BepInEx 5 from at least 26/09/2019 (older won't work).
+## How to use (manual installation)
+- Install the [Outward BepInEx Pack](https://outward.thunderstore.io/package/BepInEx/BepInExPack_Outward/).
 - Download latest release from the Releases tab above.
 - Place the .dll inside your BepInEx\Plugins folder.
 - Start the game and press F5.
 
-Note: The .xml file is useful for plugin developers when referencing ConfigurationManager.dll in your plugin, it will provide descriptions for types and methods to your IDE. Users can ignore it.
+# Original README
+
+From [the official repo](https://github.com/BepInEx/BepInEx.ConfigurationManager).
+
+## Plugin / mod configuration manager for BepInEx 5
+An easy way to let user configure how a plugin behaves without the need to make your own GUI. The user can change any of the settings you expose, even keyboard shortcuts.
+
+The configuration manager can be accessed in-game by pressing the hotkey (by default F5). Hover over the setting names to see their descriptions, if any.
+
+![Configuration manager](Screenshot.PNG)
 
 ## How to make my mod compatible?
 ConfigurationManager will automatically display all settings from your plugin's `Config`. All metadata (e.g. description, value range) will be used by ConfigurationManager to display the settings to the user.
