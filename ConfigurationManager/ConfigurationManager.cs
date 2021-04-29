@@ -60,7 +60,7 @@ namespace ConfigurationManager
         private string _modsWithoutSettings;
 
         private List<SettingEntryBase> _allSettings;
-        private List<PluginSettingsData> _filteredSetings;
+        private List<PluginSettingsData> _filteredSetings = new List<PluginSettingsData>();
 
         internal Rect SettingWindowRect { get; private set; }
         private Rect _screenRect;
@@ -160,11 +160,9 @@ namespace ConfigurationManager
                 SettingFieldDrawer.SettingDrawHandlers[settingType] = onGuiDrawer;
         }
 
-        private void BuildSettingList()
+        public void BuildSettingList()
         {
             SettingSearcher.CollectSettings(out var results, out var modsWithoutSettings, _showDebug);
-
-            //todo set collapsed state
 
             _modsWithoutSettings = string.Join(", ", modsWithoutSettings.Select(x => x.TrimStart('!')).OrderBy(x => x).ToArray());
             _allSettings = results.ToList();
@@ -204,6 +202,15 @@ namespace ConfigurationManager
 
             var settingsAreCollapsed = _pluginConfigCollapsedDefault.Value;
 
+            var nonDefaultCollpasingStateByPluginName = new HashSet<string>();
+            foreach (var pluginSetting in _filteredSetings)
+            {
+                if (pluginSetting.Collapsed != settingsAreCollapsed)
+                {
+                    nonDefaultCollpasingStateByPluginName.Add(pluginSetting.Info.Name);
+                }
+            }
+
             _filteredSetings = results
                 .GroupBy(x => x.PluginInfo)
                 .Select(pluginSettings =>
@@ -214,7 +221,7 @@ namespace ConfigurationManager
                         .ThenBy(x => x.Key)
                         .Select(x => new PluginSettingsData.PluginSettingsGroupData { Name = x.Key, Settings = x.OrderByDescending(set => set.Order).ThenBy(set => set.DispName).ToList() });
 
-                    return new PluginSettingsData { Info = pluginSettings.Key, Categories = categories.ToList(), Collapsed = settingsAreCollapsed };
+                    return new PluginSettingsData { Info = pluginSettings.Key, Categories = categories.ToList(), Collapsed = nonDefaultCollpasingStateByPluginName.Contains(pluginSettings.Key.Name) ? !settingsAreCollapsed : settingsAreCollapsed };
                 })
                 .OrderBy(x => x.Info.Name)
                 .ToList();
@@ -258,12 +265,6 @@ namespace ConfigurationManager
         {
             if (DisplayingWindow)
             {
-                if (Event.current.type == EventType.KeyUp && Event.current.keyCode == _keybind.Value.MainKey)
-                {
-                    DisplayingWindow = false;
-                    return;
-                }
-
                 SetUnlockCursor(0, true);
 
                 if (GUI.Button(_screenRect, string.Empty, GUI.skin.box) &&
@@ -619,10 +620,7 @@ namespace ConfigurationManager
 
             if (OverrideHotkey) return;
 
-            if (!DisplayingWindow && _keybind.Value.IsUp())
-            {
-                DisplayingWindow = true;
-            }
+            if (_keybind.Value.IsDown()) DisplayingWindow = !DisplayingWindow;
         }
 
         private void LateUpdate()
