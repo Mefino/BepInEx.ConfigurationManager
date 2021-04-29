@@ -32,7 +32,8 @@ namespace ConfigurationManager
         /// <summary>
         /// Version constant
         /// </summary>
-        public const string Version = "16.3";
+        public const string Version = "16.3.3";
+        // Mefino note: Current fork is 16.3, the patch versions are for Thunderstore.
 
         internal static new ManualLogSource Logger;
         private static SettingFieldDrawer _fieldDrawer;
